@@ -85,72 +85,58 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Send message to Gemini API
-  async function sendMessageToAI(message) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10-second timeout
-    
-    loadingIndicator.style.display = 'block';
-    sendButton.disabled = true;
-
-    const requestBody = {
-        contents: [{
-            role: "user",
-            parts: [{ text: message }]
-        }],
-        systemInstruction: {
-            parts: [{ text: systemInstructionText }]
-        },
-        generationConfig: {
-            temperature: 0.5,
-            topK: 40,
-            topP: 0.95
-        }
-    };
-
-    try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(requestBody),
-            signal: controller.signal
-        });
-
-        clearTimeout(timeoutId);
-
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            const errorMessage = errorData.error?.message || 
-                                `API request failed with status ${response.status}`;
-            throw new Error(errorMessage);
-        }
-
-        const data = await response.json();
+    async function sendMessageToAI(message) {
+        loadingIndicator.style.display = 'allowed';
         
-        if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
-            throw new Error("API returned an unexpected response format");
-        }
-        
-        return data.candidates[0].content.parts[0].text;
+        const requestBody = {
+            contents: [
+                {
+                    role: "user",
+                    parts: [
+                        { text: message }
+                    ]
+                }
+            ],
+            systemInstruction: {
+                parts: [
+                    { text: systemInstructionText }
+                ]
+            },
+            generationConfig: {
+                temperature: 0.5,
+                topK: 40,
+                topP: 0.95
+            }
+        };
 
-    } catch (error) {
-        console.error("API Error:", error);
-        
-        let userMessage = "Sorry, I encountered an error processing your request.";
-        if (error.name === 'AbortError') {
-            userMessage = "Request timed out. Please try again.";
-        } else if (error.message.includes('Failed to fetch')) {
-            userMessage = "Network error. Please check your connection.";
-        } else if (error.message) {
-            userMessage += ` (${error.message})`;
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error?.message || "API request failed");
+            }
+
+            const data = await response.json();
+            
+            if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+                return data.candidates[0].content.parts[0].text;
+            } else {
+                throw new Error("Unexpected response format");
+            }
+        } catch (error) {
+            console.error("API Error:", error);
+            return `Sorry, I encountered an error: ${error.message}`;
+        } finally {
+            loadingIndicator.style.display = 'none';
         }
-        
-        return userMessage;
-    } finally {
-        loadingIndicator.style.display = 'none';
-        sendButton.disabled = false;
-        clearTimeout(timeoutId);
     }
-}
 
     // Event listeners
     sendButton.addEventListener('click', async function() {
@@ -200,5 +186,5 @@ document.addEventListener('DOMContentLoaded', function() {
         - <code>How hash tables work</code>
         - <code>DFS vs BFS differences</code>
         - <code>Dynamic programming examples</code>`, false);
-    }, 1000);
+    }, 2000);
 });
