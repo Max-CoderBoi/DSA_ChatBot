@@ -1,100 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Mentor AI</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Mentor AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="logo-text">Code<span></></span>Mentor</div>
-            </div>
-            
-            <div class="sidebar-menu">
-                <div class="menu-item">
-                    <i class="fas fa-comment-dots"></i>
-                    <span class="menu-text">Chat</span>
-                </div>
-                <div class="menu-item active">
-                    <i class="fas fa-project-diagram"></i>
-                    <span class="menu-text">DSA Visualizer</span>
-                </div>
-                <div class="menu-item">
-                    <i class="fas fa-history"></i>
-                    <span class="menu-text">History</span>
-                </div>
-                <div class="menu-item">
-                    <i class="fas fa-cog"></i>
-                    <span class="menu-text">Settings</span>
-                </div>
-            </div>
-
-            <!-- Made by Akash -->
-            <div class="made-by">
-                <p>👨‍💻 Made by <strong>Akash Patil</strong></p>
-            </div>
-
-            <!-- Footer -->
-            <div class="sidebar-footer">
-                <p>⚡ Powered by Gemini AI</p>
-            </div>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="header">
-                <h1>Coding Assistant</h1>
-                <div class="tabs">
-                    <button class="tab-btn active">Chat</button>
-                    <button class="tab-btn">DSA Visualizer</button>
-                </div>
-            </div>
-            <p class="header-subtitle">Ask me anything about programming, algorithms, or data structures</p>
-            
-            <!-- Chat Container -->
-            <div class="chat-container">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot-message">
-                        <div class="message-content">
-                            <p>Hello! I'm your AI coding instructor. I can help with:</p>
-                            <ul>
-                                <li>Data structures & algorithms</li>
-                                <li>Programming concepts</li>
-                                <li>Code debugging</li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </div>
-                    
-
-                </div>
-              
-                
-                <div class="chat-input-area">
-                        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
-        <i class="fas fa-spinner fa-spin"></i> Thinking...
+  <div class="app-container">
+    
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-robot"></i></div>
+        <div class="logo-text">Code<span>&lt;/&gt;</span>Mentor</div>
+      </div>
+      <div class="sidebar-menu">
+        <div class="menu-item"><i class="fas fa-comment-dots"></i><span class="menu-text">Chat</span></div>
+        <div class="menu-item active"><i class="fas fa-project-diagram"></i><span class="menu-text">DSA Visualizer</span></div>
+        <div class="menu-item"><i class="fas fa-history"></i><span class="menu-text">History</span></div>
+        <div class="menu-item"><i class="fas fa-cog"></i><span class="menu-text">Settings</span></div>
+      </div>
+      <div class="made-by"><p>👨‍💻 Made by <strong>Akash Patil</strong></p></div>
+      <div class="sidebar-footer"><p>⚡ Powered by Gemini AI</p></div>
     </div>
 
-                    <div class="chat-input">
-                        <textarea id="messageInput" placeholder="Ask a coding question... (e.g., 'Explain hash tables')"></textarea>
-                        <button id="sendButton">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+    
+    <div class="main-content">
+      <div class="header">
+        <h1>Coding Assistant</h1>
+        <div class="tabs">
+          <button class="tab-btn active">Chat</button>
+          <button class="tab-btn">DSA Visualizer</button>
         </div>
-    </div>
+      </div>
+      <p class="header-subtitle">Ask me anything about programming, algorithms, or data structures</p>
 
-    <script src="script.js"></script>
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-content">
+              <p>Hello! I'm your AI coding instructor. I can help with:</p>
+              <ul>
+                <li>Data structures & algorithms</li>
+                <li>Programming concepts</li>
+                <li>Code debugging</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+            <i class="fas fa-spinner fa-spin"></i> Thinking...
+          </div>
+          <div class="chat-input">
+            <textarea id="messageInput" placeholder="Ask a coding question... (e.g., 'Explain hash tables')"></textarea>
+            <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

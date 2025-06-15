@@ -1,39 +1,30 @@
-/*
-==================================================
-  Root Variables & Global Styles
-==================================================
-*/
 :root {
-    --primary: #7e6fff;
-    --primary-dark: #6a5af9;
-    --secondary: #00d4ff;
-    
-    /* NEW Color Palette from Image */
-    --sidebar-bg: #0c1120;
-    --body-bg: #121826;
-    --card-bg: #1e293b;
-    --input-area-bg: #121826; /* Darker bg for input */
-    
-    --border-color: #2d3749;
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --code-bg: #0f172a;
-
-    --sidebar-width: 260px;
-    --overlap-amount: 50px;
+  --primary: #7e6fff;
+  --primary-dark: #6a5af9;
+  --secondary: #00d4ff;
+  --sidebar-bg: #0c1120;
+  --body-bg: #121826;
+  --card-bg: #1e293b;
+  --input-area-bg: #121826;
+  --border-color: #2d3749;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --code-bg: #0f172a;
+  --sidebar-width: 260px;
+  --overlap-amount: 50px;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: var(--body-bg);
-    color: var(--text-primary);
-    overflow: hidden; /* Prevent scrolling on the body */
+  background: radial-gradient(ellipse at top left, #1e293b, #121826);
+  color: var(--text-primary);
+  overflow: hidden;
 }
 
 a {
@@ -45,358 +36,318 @@ a:hover {
   color: var(--primary);
 }
 
-
-/*
-==================================================
-  App Layout (The Overlap Logic)
-==================================================
-*/
+/* Layout */
 .app-container {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    width: var(--sidebar-width);
-    flex-shrink: 0;
-    height: 100vh;
-    background-color: var(--sidebar-bg);
-    padding: 25px 0;
-    z-index: 10; /* Sidebar is on top */
+  display: flex;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #0f172a, #0c1120);
+  padding: 25px 0;
+  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  border-right: 1px solid var(--border-color);
 }
 
 .main-content {
-    flex-grow: 1;
-    background-color: var(--card-bg);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-
-    /* The overlap magic */
-    margin-left: calc(-1 * var(--overlap-amount));
-    border-radius: 24px 0 0 24px;
-    padding: 30px;
-    padding-left: calc(var(--overlap-amount) + 30px);
+  flex-grow: 1;
+  background-color: var(--card-bg);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: calc(-1 * var(--overlap-amount));
+  border-radius: 24px 0 0 24px;
+  padding: 30px;
+  padding-left: calc(var(--overlap-amount) + 30px);
 }
 
-
-/*
-==================================================
-  Sidebar Styling
-==================================================
-*/
+/* Sidebar */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 0 25px 30px;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 25px 30px;
 }
 
 .logo-icon {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 10px rgba(126, 111, 255, 0.3);
 }
 
 .logo-text {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
 }
-
 .logo-text span {
-    color: var(--primary);
-    font-weight: 400;
-    margin: 0 2px;
+  color: var(--primary);
+  font-weight: 400;
+  margin: 0 2px;
 }
 
 .sidebar-menu {
-    padding: 0 15px;
-    flex-grow: 1;
+  padding: 0 15px;
+  flex-grow: 1;
 }
 
 .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 14px 20px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 20px;
+  border-left: 4px solid transparent;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border 0.25s ease;
+  color: var(--text-secondary);
+  font-weight: 500;
+  position: relative;
 }
-
+.menu-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: transparent;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
 .menu-item:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+.menu-item:hover::before {
+  background: var(--primary);
 }
 .menu-item.active {
-    background: rgba(126, 111, 255, 0.1);
-    color: var(--primary);
+  background: rgba(126, 111, 255, 0.15);
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+  font-weight: 600;
 }
 
-.made-by, .sidebar-footer {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+.sidebar-footer,
+.made-by {
+  padding: 12px 25px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  line-height: 1.4;
+}
+.sidebar-footer a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+.sidebar-footer a:hover {
+  color: var(--secondary);
 }
 .made-by {
-    border-top: 1px solid var(--border-color);
-    padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
 }
 .sidebar-footer {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
 
-
-/*
-==================================================
-  Main Content & Header Styling
-==================================================
-*/
+/* Header */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 25px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
 .header h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
+  font-size: 1.6rem;
 }
-
 .header-subtitle {
-    color: var(--text-secondary);
-    margin-top: 5px;
-    margin-bottom: 25px;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
+/* Tabs */
 .tabs {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
-
 .tab-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
-
 .tab-btn:hover {
-    border-color: var(--primary);
-    color: var(--text-primary);
+  border-color: var(--primary);
+  color: var(--text-primary);
 }
-
 .tab-btn.active {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #fff;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  border-color: var(--primary);
+  color: #fff;
 }
 
-
-/*
-==================================================
-  Chat Area Styling
-==================================================
-*/
+/* Chat area */
 .chat-container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* This is important */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
 }
-
 .chat-messages {
-    flex-grow: 1;
-    padding: 10px 25px 25px 10px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-
 .message {
-    max-width: 75%;
-    padding: 18px;
-    border-radius: 12px;
-    line-height: 1.6;
-    font-size: 15px;
-    background-color: var(--sidebar-bg); /* Darker message bubbles */
+  max-width: 75%;
+  padding: 16px 20px;
+  border-radius: 14px;
+  line-height: 1.6;
+  font-size: 15px;
+  background-color: var(--sidebar-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
 .user-message {
-    align-self: flex-end;
-    background-color: var(--primary);
-    color: #fff;
-    border-bottom-right-radius: 5px;
+  align-self: flex-end;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: #fff;
+  border-bottom-right-radius: 5px;
 }
-
 .bot-message {
-    align-self: flex-start;
-    border-bottom-left-radius: 5px;
+  align-self: flex-start;
+  border-left: 4px solid var(--primary);
+  border-bottom-left-radius: 5px;
 }
 
-/* NEW: Suggestions Bar */
-.suggestions-bar {
-    padding: 20px;
-    background-color: var(--body-bg);
-    border-radius: 12px;
-    color: var(--text-secondary);
-    font-size: 0.95em;
-    line-height: 1.8;
-}
-
-.suggestions-bar p {
-    margin: 0;
-}
-
-/* Code & Preformatted Text */
-code {
-    background-color: var(--code-bg);
-    color: var(--secondary);
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9em;
-}
-
-
-/*
-==================================================
-  Chat Input Area Styling
-==================================================
-*/
-.chat-input-area {
-    padding-top: 15px;
-    margin: 0 -30px -30px calc(-1 * (var(--overlap-amount) + 30px));
-    background-color: var(--input-area-bg);
-}
-
+/* Chat input */
 .chat-input {
-    display: flex;
-    padding: 0 30px 30px calc(var(--overlap-amount) + 30px);
-    align-items: center;
+  display: flex;
+  padding: 0 30px 30px calc(var(--overlap-amount) + 30px);
+  align-items: center;
 }
-
 .chat-input textarea {
-    flex: 1;
-    padding: 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    background-color: var(--card-bg);
-    color: var(--text-primary);
-    resize: none;
-    min-height: 54px;
-    max-height: 150px;
-    font-size: 1rem;
-    line-height: 1.5;
+  flex: 1;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--code-bg);
+  color: var(--text-primary);
+  resize: none;
+  min-height: 54px;
+  max-height: 150px;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border 0.2s ease;
 }
-
+.chat-input textarea::placeholder {
+  color: var(--text-secondary);
+  font-style: italic;
+}
 .chat-input textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(126, 111, 255, 0.2);
+  outline: none;
+  border-color: var(--primary);
 }
-
 .chat-input button {
-    width: 54px;
-    height: 54px;
-    margin-left: 15px;
-    border: none;
-    border-radius: 12px;
-    background: var(--primary);
-    color: white;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  margin-left: 15px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
 }
-
 .chat-input button:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(126, 111, 255, 0.2);
+  background: var(--primary-dark);
+  transform: scale(1.05);
 }
 
-
-/*
-==================================================
-  Scrollbar & Responsive
-==================================================
-*/
+/* Scrollbar */
 .chat-messages::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 .chat-messages::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 .chat-messages::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
+  background: var(--border-color);
+  border-radius: 4px;
 }
 .chat-messages::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
+  background: var(--primary);
 }
 
-@media (max-width: 900px) {
-    .sidebar {
-        position: fixed;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-    }
-    .main-content {
-        margin-left: 0;
-        border-radius: 0;
-        padding: 20px;
-        padding-left: 20px;
-    }
-    .chat-input-area {
-        margin: 0 -20px -20px -20px;
-    }
-    .chat-input {
-        padding: 0 20px 20px 20px;
-    }
-}
-
+/* Loading */
 .loading-indicator {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 24px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    color: #555;
-    font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: #555;
+  font-size: 16px;
 }
-
 .loading-indicator .fa-spinner {
-    margin-right: 10px;
-    font-size: 18px;
+  margin-right: 10px;
+  font-size: 18px;
 }
 
-/* Make sure chat-container has relative positioning */
-.chat-container {
-    position: relative;
-    height: 100%;
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  .main-content {
+    margin-left: 0;
+    border-radius: 0;
+    padding: 20px;
+  }
+  .chat-input-area {
+    margin: 0 -20px -20px -20px;
+  }
+  .chat-input {
+    padding: 0 20px 20px 20px;
+  }
 }
