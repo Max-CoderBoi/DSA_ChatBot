@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuItems = document.querySelectorAll('.menu-item');
 
     // Gemini API configuration
-    const GEMINI_API_KEY =process.env.gemeni_key
-    ; 
+    const GEMINI_API_KEY =process.env.gemeni_key ; 
     const MODEL_NAME = "gemini-1.5-flash";
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${GEMINI_API_KEY}`;
 
